@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>National Aquatic Germplasm Center | Aquatic Genetic Resources</title>
-  <meta name="description" content="The National Aquatic Germplasm Center supports aquatic genetic-resource conservation through cryopreservation, repository services, training, and applied research.">
+  <title>National Aquatic Germplasm Center | NAGC</title>
+  <meta name="description" content="NAGC supports aquatic genetic-resource conservation through cryopreservation, repository services, training, technology development, and applied research.">
   <meta name="theme-color" content="#071827">
   <link rel="canonical" href="https://nagc-website.vercel.app/">
   <meta property="og:type" content="website">
@@ -12,12 +12,18 @@
   <meta property="og:description" content="Protecting aquatic genetic resources through practical conservation science.">
   <meta property="og:url" content="https://nagc-website.vercel.app/">
   <meta property="og:image" content="https://nagc-website.vercel.app/assets/hero-aquatic-science.webp">
+  <meta property="og:image:width" content="1680">
+  <meta property="og:image:height" content="945">
+  <meta property="og:image:alt" content="Aquatic species in deep water with subtle genetic-science motifs">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="National Aquatic Germplasm Center">
+  <meta name="twitter:description" content="Practical science for the long-term stewardship of aquatic genetic resources.">
+  <meta name="twitter:image" content="https://nagc-website.vercel.app/assets/hero-aquatic-science.webp">
   <link rel="icon" href="assets/nagc-mark.svg" type="image/svg+xml">
   <link rel="preload" href="assets/hero-aquatic-science.webp" as="image" type="image/webp" fetchpriority="high">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"Organization","name":"National Aquatic Germplasm Center","url":"https://nagc-website.vercel.app/","email":"contact@nationalaquatic.org","description":"Aquatic genetic-resource conservation, cryopreservation, repository services, training, and applied research."}
+    {"@context":"https://schema.org","@type":"Organization","name":"National Aquatic Germplasm Center","alternateName":"NAGC","url":"https://nagc-website.vercel.app/","logo":"https://nagc-website.vercel.app/assets/nagc-mark.svg","email":"contact@nationalaquatic.org","telephone":"+1-225-578-4692","contactPoint":{"@type":"ContactPoint","contactType":"general inquiries","email":"contact@nationalaquatic.org","telephone":"+1-225-578-4692"},"description":"Aquatic genetic-resource conservation, cryopreservation, repository services, training, and applied research."}
   </script>
   <script src="script.js" defer></script>
 </head>
@@ -76,10 +82,11 @@
     <section class="section section-ink" id="services">
       <div class="shell section-intro">
         <p class="eyebrow">Services</p><h2>Support matched to your conservation challenge</h2>
-        <p>Published guide prices are effective June 2026 and remain subject to scope confirmation.</p>
+        <p>Prototype guide prices are effective June 2026. Availability, final scope, and fees must be confirmed directly with NAGC.</p>
       </div>
       <div class="shell service-layout">
-        <div class="tabs" role="tablist" aria-label="Service categories">
+        <p class="sr-only" id="service-tabs-help">Choose a service category. On small screens, scroll horizontally to see all categories.</p>
+        <div class="tabs" role="tablist" aria-label="Service categories" aria-describedby="service-tabs-help">
           <button role="tab" aria-selected="true" aria-controls="panel-repository" id="tab-repository" tabindex="0">Repository</button>
           <button role="tab" aria-selected="false" aria-controls="panel-consulting" id="tab-consulting" tabindex="-1">Consulting &amp; training</button>
           <button role="tab" aria-selected="false" aria-controls="panel-development" id="tab-development" tabindex="-1">Custom development</button>
@@ -127,13 +134,15 @@
 
     <section class="section species-section" id="species">
       <div class="shell section-intro dark-copy"><p class="eyebrow dark">Species scope</p><h2>Working across aquatic diversity</h2><p>Illustrative taxa relevant to freshwater, anadromous, and marine conservation programs.</p></div>
-      <div class="shell filter-row" aria-label="Filter species">
+      <div class="shell filter-row" role="group" aria-label="Filter species">
         <button class="filter active" type="button" data-filter="all" aria-pressed="true">All</button>
         <button class="filter" type="button" data-filter="freshwater" aria-pressed="false">Freshwater</button>
         <button class="filter" type="button" data-filter="anadromous" aria-pressed="false">Anadromous</button>
         <button class="filter" type="button" data-filter="marine" aria-pressed="false">Marine</button>
       </div>
-      <div class="shell species-grid" id="species-grid" aria-live="polite"></div>
+      <div class="shell species-grid" id="species-grid" aria-live="polite">
+        <noscript><p class="no-script">Examples include rainbow trout, Chinook salmon, Atlantic and lake sturgeon, paddlefish, muskellunge, walleye, striped bass, Atlantic cod, blue crab, Eastern oyster, and American eel.</p></noscript>
+      </div>
     </section>
 
     <section class="section section-soft" id="resources">
@@ -164,7 +173,7 @@
       <p>Practical science for the long-term stewardship of aquatic genetic resources.</p>
       <nav aria-label="Footer navigation"><a href="#about">About</a><a href="#services">Services</a><a href="#resources">Resources</a><a href="#contact">Contact</a></nav>
     </div>
-    <div class="shell footer-bottom"><span>© <span id="year"></span> National Aquatic Germplasm Center</span><a href="#top">Back to top ↑</a></div>
+    <div class="shell footer-bottom"><span>© <span id="year"></span> National Aquatic Germplasm Center</span><span class="prototype-note">Prototype site · Details subject to confirmation</span><a href="#top">Back to top ↑</a></div>
   </footer>
 </body>
 </html>
