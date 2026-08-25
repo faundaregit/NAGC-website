@@ -1,0 +1,68 @@
+name: Deploy NAGC website to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare static site
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          BASE_URL: ${{ steps.pages.outputs.base_url }}
+        run: |
+          mkdir -p _site
+          cp index.html styles.css script.js robots.txt sitemap.xml _site/
+          cp -R assets _site/
+
+          for page in about team contact services programs species resources; do
+            mkdir -p "_site/${page}"
+            cp "${page}.html" "_site/${page}/index.html"
+          done
+
+          touch _site/.nojekyll
+
+          find _site -type f -name '*.html' -print0 | xargs -0 sed -i \
+            -e "s|https://nagc-website.vercel.app|${BASE_URL}|g" \
+            -e "s|href=\"/|href=\"${BASE_PATH}/|g" \
+            -e "s|src=\"/|src=\"${BASE_PATH}/|g"
+
+          sed -i \
+            -e "s|url(\"/|url(\"${BASE_PATH}/|g" \
+            -e "s|url('/|url('${BASE_PATH}/|g" \
+            _site/styles.css
+
+          sed -i "s|https://nagc-website.vercel.app|${BASE_URL}|g" \
+            _site/robots.txt _site/sitemap.xml
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
